@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Wrapper from "./Wrapper";
 
-function Login({login, password, setAuth}) {
+function Login({login, password}) {
 	const [loginValue, setLoginValue] = useState('');
 	const [passValue, setPassValue] = useState('');
 	const navigate = useNavigate();
@@ -13,12 +13,12 @@ function Login({login, password, setAuth}) {
 		setPassValue(event.target.value);
 	}
 	const navFunc = () => {
-		console.log(loginValue);
-		console.log(passValue);
 		if(loginValue === login && passValue === password){
-			setAuth(true);
 			localStorage.setItem('test-login-form-auth-state', true);
+			alert('You are authorized');
 			navigate('/welcome');			
+		}else{
+			alert('Login or password is incorrect');
 		}
 	}
 	return (

@@ -1,23 +1,17 @@
-import { useEffect } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Welcome from "./Welcome";
 import Wrapper from "./Wrapper";
 
-function Start({auth}) {
+function Start({login}) {
 	const navigate = useNavigate();
 	const navFunc = () => {
 		navigate('/login');
 	}
-	useEffect(()=>{
-		if(localStorage.getItem('test-login-form-auth-state')) {
-			navigate('/welcome');
-		}
-	});
-	// if(auth) return <Welcome/>;
+	if(localStorage.getItem('test-login-form-auth-state')) {
+		return <Welcome login={login} />
+	}
 	return (
-		<Wrapper>
-			<button onClick={navFunc}>Start</button>
-		</Wrapper>
+		<Wrapper><button onClick={navFunc}>Start</button></Wrapper>
 	);
 }
 
